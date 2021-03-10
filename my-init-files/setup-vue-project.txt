@@ -1,0 +1,121 @@
+1.- Instal·lar node.js
+    nodejs.org/
+    convertir el path en global per cridar-lo desde qualsevol part
+    comprovar instal·lacio amb node --version
+2.- Instal·lar vue/CLI
+    npm install -g @vue/cli/
+    comprovar instal·lacio amb vue -V
+
+3.- Crear projecte
+    Amb CLI: vue create nom-project o amb vue ui: vue ui
+    
+
+4.- Plugins
+    chrome extension vue.js devtools  ofrecido por vuejs.org 
+    Vetur extension for VSC
+    Vue Validate
+        npm install vuelidate --save
+        npm run serve
+        Afegir a main.js
+            A sota de App.vue: import VueValidate from 'vuelidate';
+            A sota de vue.config.productionTip: Vue.use(VueValidate);
+    Vue Router
+        npm install vue-router
+        comprovar que existeix a package.json file
+    Vuex
+        npm install vuex --save
+        en dir src crear store.js: touch store.js
+        En store.js insertar:
+
+            import Vue from 'vue';
+            import Vuex from 'vuex';
+
+            Vue.use(Vuex);
+
+            const store = new Vuex.Store(
+            {
+                state:
+                {
+
+                }    
+            });
+
+            export default store;
+
+        En main.js insertar:
+            import store from './store';
+
+        Verificar que en objeto new Vue incluye:
+                store
+            debajo de router,
+
+    
+    Axios per gestionar peticions AJAX
+        npm install axios
+        en fitxer index.js afegir: import axios from 'axios';
+    
+    Instalar SASS preprocessor
+        npm install -D sass-loader node-sass
+
+4.- Instalar Bootstrap 4
+    Opcion 1
+        npm install bootstrap jquery popper.js 
+	@popperjs/core
+	popper.js está deprecated 1.16.1 es legacy, pero aun lo requiere el paquete de bootstrap
+	En archivo main.js debajo de /.store : 
+            import "bootstrap";
+            import "bootstrap/dist/css/bootstrap.min.css";
+	test con en App.vue:
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+  			With Bootstrap!
+  		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  			<span aria-hidden="true">&times;</span>
+ 		  </button>
+		</div>
+        
+    
+    Opcion 2 Bootstrap-vue: http://bootstrap-vue.org
+
+5.- Estructura de projecte. Crear els fitxers necessaris que no estiguin despres de vue create plugins i bootstrap:
+        
+        Usar comandos en vue-template
+            Copiar init files en carpeta de proyecto:
+            eslintrc.js
+            prettierrc
+            vetur.config.js
+            vue.config.js
+        Copiar reset.scss en carpeta scss. Importarlo en app.scss @import "reset";
+        
+
+        // Esto son las notas que hay en el modulo de estructura de projecte //
+            node-modules
+            public
+            src
+                assets
+                components
+                mkdir Models (este no sale) Todos los objetos iran aquí
+                mkdir Scripts (este no sale) Todos los archivos JS de nuestros componentes iran aquí
+                mkdir Styles (este no sale) Todos los archivos CSS y SCSS de nuestros componentes iran aquí
+                 cd Styles mkdir CSS
+                Views  Todos los componentes contenedores iran aquí
+
+                App.vue Archivo de entrada. Componente de alto nivel
+                main.js Archivo que se cargará primero
+                touch router.js (este no sale) Archivo para configurar las rutas para SPA
+            touch .bootstraprc (este no sale) Configuracion de Bootstrap
+            babel.config.js Archivo encargado de transformar ES6 a ES5
+            package.json   Archivo para añadir o quitar paquetes
+            README.md Contiene todos los comandos para usar CLI
+            touch vue.config.js Archivo configuracio vue create curs para Vue
+
+6.- Separar ficheros
+    Dentro de carpeta Scripts crear: touch app.js
+        Copiar desde App.vue y pegar en app.js todo lo que haya dentro del HTMLtag script
+    Dentro de carpeta Styles/SCSS/ crear: touch app.scss
+        Copiar desde App.vue y pergar en app.scss todo lo que haya dentro del HTMLtag styles
+    En App.vue insertar estas dos HTMLtags:
+        <script type="text/javascript" src="./Scripts/app.js"></script>
+        <style src="./Styles/CSS/app.css"></style>
+
+    <-- Copiar componentes, scripts y styles de App, NewParent y New Child de init-files.
+        Comprobar que funciona la separacion -->
